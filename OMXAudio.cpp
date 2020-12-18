@@ -585,7 +585,7 @@ bool COMXAudio::Initialize(OMXClock *clock, const OMXAudioConfig &config, uint64
     }
 
     omx_buffer->nOffset = 0;
-    omx_buffer->nFilledLen  = std::min(sizeof(m_wave_header), omx_buffer->nAllocLen);
+    omx_buffer->nFilledLen  = std::min(sizeof(m_wave_header), static_cast<unsigned long>(omx_buffer->nAllocLen));
 
     memset((unsigned char *)omx_buffer->pBuffer, 0x0, omx_buffer->nAllocLen);
     memcpy((unsigned char *)omx_buffer->pBuffer, &m_wave_header, omx_buffer->nFilledLen);
